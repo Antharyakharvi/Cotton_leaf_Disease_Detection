@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotton Leaf Disease Detection</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <h1>Cotton Leaf Disease Detection</h1>
+
+    <div class="container">
+        <form action="/detect" method="POST" enctype="multipart/form-data">
+            <label for="imageUpload">Upload Cotton Leaf Image:</label>
+            <input type="file" id="imageUpload" name="image" accept="image/*" required>
+
+            <div class="button-group">
+                <button type="submit">Detect Disease</button>
+                <button type="reset">Reset</button>
+                <button type="button" onclick="window.close()">Exit</button>
+            </div>
+        </form>
+
+        {% if result %}
+            <div class="results">
+                <h2>Detected Disease: {{ result }}</h2>
+                <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Uploaded Image">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
